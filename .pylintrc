@@ -1,0 +1,32 @@
+[MASTER]
+# Set the minimum score to pass the linting check
+fail-under=7.0
+
+[MESSAGES CONTROL]
+# Disable specific warnings that are too strict for this project
+disable=
+    missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
+    too-many-locals,
+    too-many-arguments,
+    too-many-instance-attributes,
+    too-many-branches,
+    too-many-statements,
+    line-too-long,
+    invalid-name
+
+[FORMAT]
+# Maximum number of characters on a single line
+max-line-length=120
+
+[BASIC]
+# Good variable names which should always be accepted
+good-names=i,j,k,ex,Run,_,x,y,z,id,df,ax
+
+[DESIGN]
+# Maximum number of arguments for function / method
+max-args=10
+
+# Maximum number of locals for function / method body
+max-locals=20
