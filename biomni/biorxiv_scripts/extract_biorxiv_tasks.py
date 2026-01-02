@@ -19,7 +19,7 @@ from tqdm import tqdm
 
 # Add the parent directory to the path so we can import the bioagentos package
 sys.path.append("../../")
-from biomni.agent.env_collection import PaperTaskExtractor
+from bioaisaas.agent.env_collection import PaperTaskExtractor
 
 
 def parse_arguments():

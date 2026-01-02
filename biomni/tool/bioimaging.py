@@ -340,7 +340,7 @@ class SegmentationTool:
             common_paths = [
                 "./models/nnUNet",
                 "~/nnUNet_results",
-                "~/biomni_models/nnUNet",
+                "~/bioaisaas_models/nnUNet",
             ]
 
             for base_path in common_paths:
@@ -1013,7 +1013,7 @@ def create_segmentation_visualization(original_mri, segmentation, output_dir="./
 # Registration convenience functions
 def preprocess_image(image_path: str, output_path: str, denoise: bool = True, normalize: bool = True) -> str:
     """
-    Standalone image preprocessing function for Biomni integration.
+    Standalone image preprocessing function for BioAiSaaS integration.
 
     Args:
         image_path: Path to input image
@@ -1044,7 +1044,7 @@ def quick_rigid_registration(
     gradient_convergence_tolerance: float = 1e-6,
 ) -> dict:
     """
-    Quick rigid registration function for Biomni integration.
+    Quick rigid registration function for BioAiSaaS integration.
 
     Args:
         fixed_image_path: Path to reference image
@@ -1120,7 +1120,7 @@ def quick_affine_registration(
     gradient_convergence_tolerance: float = 1e-6,
 ) -> dict:
     """
-    Quick affine registration function for Biomni integration.
+    Quick affine registration function for BioAiSaaS integration.
 
     Args:
         fixed_image_path: Path to reference image
@@ -1197,7 +1197,7 @@ def quick_deformable_registration(
     number_of_control_points: int = 4,
 ) -> dict:
     """
-    Quick deformable registration function for Biomni integration.
+    Quick deformable registration function for BioAiSaaS integration.
 
     Args:
         fixed_image_path: Path to reference image

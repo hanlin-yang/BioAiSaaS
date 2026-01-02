@@ -14,13 +14,13 @@ from langchain_core.prompts import ChatPromptTemplate
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
 
-from biomni.config import default_config
-from biomni.know_how import KnowHowLoader
-from biomni.llm import SourceType, get_llm
-from biomni.model.retriever import ToolRetriever
-from biomni.tool.support_tools import run_python_repl
-from biomni.tool.tool_registry import ToolRegistry
-from biomni.utils import (
+from bioaisaas.config import default_config
+from bioaisaas.know_how import KnowHowLoader
+from bioaisaas.llm import SourceType, get_llm
+from bioaisaas.model.retriever import ToolRetriever
+from bioaisaas.tool.support_tools import run_python_repl
+from bioaisaas.tool.tool_registry import ToolRegistry
+from bioaisaas.utils import (
     check_and_download_s3_files,
     clean_message_content,
     convert_markdown_to_pdf,
@@ -66,7 +66,7 @@ class A1:
         commercial_mode: bool | None = None,
         expected_data_lake_files: list | None = None,
     ):
-        """Initialize the biomni agent.
+        """Initialize the bioaisaas agent.
 
         Args:
             path: Path to the data
@@ -99,11 +99,11 @@ class A1:
 
         # Import appropriate env_desc based on commercial_mode
         if commercial_mode:
-            from biomni.env_desc_cm import data_lake_dict, library_content_dict
+            from bioaisaas.env_desc_cm import data_lake_dict, library_content_dict
 
             print("🏢 Commercial mode: Using commercial-licensed datasets only")
         else:
-            from biomni.env_desc import data_lake_dict, library_content_dict
+            from bioaisaas.env_desc import data_lake_dict, library_content_dict
 
             print("🎓 Academic mode: Using all datasets (including non-commercial)")
 
@@ -153,10 +153,10 @@ class A1:
             print(f"Created directory: {path}")
 
         # --- Begin custom folder/file checks ---
-        benchmark_dir = os.path.join(path, "biomni_data", "benchmark")
-        data_lake_dir = os.path.join(path, "biomni_data", "data_lake")
+        benchmark_dir = os.path.join(path, "bioaisaas_data", "benchmark")
+        data_lake_dir = os.path.join(path, "bioaisaas_data", "data_lake")
 
-        # Create the biomni_data directory structure
+        # Create the bioaisaas_data directory structure
         os.makedirs(benchmark_dir, exist_ok=True)
         os.makedirs(data_lake_dir, exist_ok=True)
 
@@ -166,7 +166,7 @@ class A1:
             # Check and download missing data lake files
             print("Checking and downloading missing data lake files...")
             check_and_download_s3_files(
-                s3_bucket_url="https://biomni-release.s3.amazonaws.com",
+                s3_bucket_url="https://bioaisaas-release.s3.amazonaws.com",
                 local_data_lake_path=data_lake_dir,
                 expected_files=expected_data_lake_files,
                 folder="data_lake",
@@ -182,7 +182,7 @@ class A1:
             if not benchmark_ok:
                 print("Checking and downloading benchmark files...")
                 check_and_download_s3_files(
-                    s3_bucket_url="https://biomni-release.s3.amazonaws.com",
+                    s3_bucket_url="https://bioaisaas-release.s3.amazonaws.com",
                     local_data_lake_path=benchmark_dir,
                     expected_files=[],  # Empty list - will download entire folder
                     folder="benchmark",
@@ -191,7 +191,7 @@ class A1:
             print("Skipping datalake download (load_datalake=False)")
             print("Note: Some tools may require datalake files to function properly.")
 
-        self.path = os.path.join(path, "biomni_data")
+        self.path = os.path.join(path, "bioaisaas_data")
         module2api = read_module2api()
 
         self.llm = get_llm(
@@ -330,9 +330,9 @@ class A1:
             # Make the function available in the global namespace for execution
             import builtins
 
-            if not hasattr(builtins, "_biomni_custom_functions"):
-                builtins._biomni_custom_functions = {}
-            builtins._biomni_custom_functions[schema["name"]] = api
+            if not hasattr(builtins, "_bioaisaas_custom_functions"):
+                builtins._bioaisaas_custom_functions = {}
+            builtins._bioaisaas_custom_functions[schema["name"]] = api
 
             print(
                 f"Tool '{schema['name']}' successfully added and ready for use in both direct execution and retrieval"
@@ -352,7 +352,7 @@ class A1:
         Add MCP (Model Context Protocol) tools from configuration file.
 
         This method dynamically registers MCP server tools as callable functions within
-        the biomni agent system. Each MCP server is loaded as an independent module
+        the bioaisaas agent system. Each MCP server is loaded as an independent module
         with its tools exposed as synchronous wrapper functions.
 
         Supports both manual tool definitions and automatic tool discovery from MCP servers.
@@ -511,9 +511,9 @@ class A1:
 
             # Register each tool
             for tool_meta in tools_config:
-                if isinstance(tool_meta, dict) and "biomni_name" in tool_meta:
+                if isinstance(tool_meta, dict) and "bioaisaas_name" in tool_meta:
                     # Manual tool definition
-                    tool_name = tool_meta.get("biomni_name")
+                    tool_name = tool_meta.get("bioaisaas_name")
                     description = tool_meta.get("description", f"MCP tool: {tool_name}")
                     parameters = tool_meta.get("parameters", {})
                     # For manual tools, check if each parameter has a "required" field
@@ -636,8 +636,8 @@ class A1:
         # Remove from global namespace
         import builtins
 
-        if hasattr(builtins, "_biomni_custom_functions") and name in builtins._biomni_custom_functions:
-            del builtins._biomni_custom_functions[name]
+        if hasattr(builtins, "_bioaisaas_custom_functions") and name in builtins._bioaisaas_custom_functions:
+            del builtins._bioaisaas_custom_functions[name]
 
         # Remove from tool registry
         if hasattr(self, "tool_registry") and self.tool_registry is not None:
@@ -1525,7 +1525,7 @@ Each library is listed with its description to help you understand its functiona
                 # Get any plots that were generated during this execution
                 execution_plots = []
                 try:
-                    from biomni.tool.support_tools import get_captured_plots
+                    from bioaisaas.tool.support_tools import get_captured_plots
 
                     current_plots = get_captured_plots()
                     execution_plots = current_plots.copy()
@@ -1843,7 +1843,7 @@ Each library is listed with its description to help you understand its functiona
 
                 # If still not found, use a default
                 if not module_name:
-                    module_name = "biomni.tool.scRNA_tools"  # Default to scRNA_tools as a fallback
+                    module_name = "bioaisaas.tool.scRNA_tools"  # Default to scRNA_tools as a fallback
                     tool["module"] = module_name
             else:
                 module_name = getattr(tool, "module_name", None)
@@ -1863,7 +1863,7 @@ Each library is listed with its description to help you understand its functiona
 
                 # If still not found, use a default
                 if not module_name:
-                    module_name = "biomni.tool.scRNA_tools"  # Default to scRNA_tools as a fallback
+                    module_name = "bioaisaas.tool.scRNA_tools"  # Default to scRNA_tools as a fallback
                     tool.module_name = module_name
 
             if module_name not in tool_desc:
@@ -1988,7 +1988,7 @@ Each library is listed with its description to help you understand its functiona
 
     def create_mcp_server(self, tool_modules=None):
         """
-        Create an MCP server object that exposes internal Biomni tools.
+        Create an MCP server object that exposes internal BioAiSaaS tools.
         This gives you control over when and how to run the server.
 
         Args:
@@ -2001,7 +2001,7 @@ Each library is listed with its description to help you understand its functiona
 
         from mcp.server.fastmcp import FastMCP
 
-        mcp = FastMCP("BiomniTools")
+        mcp = FastMCP("BioAiSaaSTools")
         modules = tool_modules or list(self.module2api.keys())
 
         registered_tools = 0
@@ -2033,7 +2033,7 @@ Each library is listed with its description to help you understand its functiona
                         optional_params = tool_schema.get("optional_parameters", [])
 
                         # Generate the wrapper function
-                        wrapper_func = self._generate_mcp_wrapper_from_biomni_schema(
+                        wrapper_func = self._generate_mcp_wrapper_from_bioaisaas_schema(
                             fn, tool_name, required_params, optional_params
                         )
 
@@ -2147,7 +2147,7 @@ Each library is listed with its description to help you understand its functiona
         """
 
         # Initialize content and tracking variables
-        content = """# Biomni Agent Conversation History
+        content = """# BioAiSaaS Agent Conversation History
 
 """
         added_plots = set()
@@ -2526,14 +2526,14 @@ Each library is listed with its description to help you understand its functiona
             any exceptions gracefully to prevent execution failures.
         """
         try:
-            from biomni.tool.support_tools import clear_captured_plots
+            from bioaisaas.tool.support_tools import clear_captured_plots
 
             clear_captured_plots()
         except Exception as e:
             print(f"Warning: Could not clear execution plots: {e}")
 
-    def _generate_mcp_wrapper_from_biomni_schema(self, original_func, func_name, required_params, optional_params):
-        """Generate wrapper function based on Biomni schema format."""
+    def _generate_mcp_wrapper_from_bioaisaas_schema(self, original_func, func_name, required_params, optional_params):
+        """Generate wrapper function based on BioAiSaaS schema format."""
         import inspect
 
         # Combine all parameters
@@ -2646,7 +2646,7 @@ Each library is listed with its description to help you understand its functiona
         self.main_history_copy = []
 
         # Available access codes (if verification is required)
-        available_access_codes = ["Biomni2025"]
+        available_access_codes = ["BioAiSaaS2025"]
 
         # Function for verification page
         def verify_access_code(code):
@@ -2943,7 +2943,7 @@ Each library is listed with its description to help you understand its functiona
             main_interface_container = gr.Group(visible=not require_verification)
 
             with verification_container:
-                gr.Markdown("# Biomni A1 Agent - Access Verification")
+                gr.Markdown("# BioAiSaaS A1 Agent - Access Verification")
                 gr.Markdown("Please enter your access code to continue.")
                 access_code_input = gr.Textbox(label="Access Code", type="password")
                 access_error_msg = gr.Markdown(visible=False)
@@ -2959,7 +2959,7 @@ Each library is listed with its description to help you understand its functiona
                 with gr.Row():
                     with gr.Column(scale=1):
                         main_chatbot = gr.Chatbot(
-                            label="Biomni A1 Agent",
+                            label="BioAiSaaS A1 Agent",
                             type="messages",
                             height=800,
                             show_copy_button=True,
@@ -2967,7 +2967,7 @@ Each library is listed with its description to help you understand its functiona
                         )
                     with gr.Column(scale=1):
                         innerloop_chatbot = gr.Chatbot(
-                            label="Biomni Executor",
+                            label="BioAiSaaS Executor",
                             type="messages",
                             height=800,
                             show_copy_button=True,

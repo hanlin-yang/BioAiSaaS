@@ -6,7 +6,7 @@
 
 **Short Description**: Comprehensive guide for finding or designing sgRNAs using validated sequences, CRISPick datasets, or de novo design tools.
 
-**Authors**: Biomni Team
+**Authors**: BioAiSaaS Team
 
 **Version**: 1.0
 
@@ -47,7 +47,7 @@ This guide provides a three-tiered approach to sgRNA design, prioritizing valida
 
 We maintain a curated database of 300+ validated sgRNA sequences from Addgene with experimental evidence.
 
-**Location**: `biomni/know_how/resource/addgene_grna_sequences.csv`
+**Location**: `bioaisaas/know_how/resource/addgene_grna_sequences.csv`
 
 **Search the database**:
 ```python
@@ -87,10 +87,10 @@ print(results_filtered[['Target_Gene', 'Target_Sequence',
 
 **CRITICAL**: Even if Method 1 found no results, you MUST perform this literature search before moving to Option 2. Many validated sgRNAs are published in literature but not in the Addgene database.
 
-Use `advanced_web_search_claude` from `biomni.tool.literature` to find validated sgRNAs from literature and databases:
+Use `advanced_web_search_claude` from `bioaisaas.tool.literature` to find validated sgRNAs from literature and databases:
 
 ```python
-from biomni.tool.literature import advanced_web_search_claude
+from bioaisaas.tool.literature import advanced_web_search_claude
 
 # Example usage
 results = advanced_web_search_claude("sgRNA TP53 validated H. sapiens experimental")
@@ -167,7 +167,7 @@ Only then proceed to **Option 2: Download CRISPick Dataset**
 
 ### 2.2 Find the Download Link
 
-**All 238 download links are available in**: `biomni/know_how/resource/CRISPick_download_links.txt`
+**All 238 download links are available in**: `bioaisaas/know_how/resource/CRISPick_download_links.txt`
 
 #### Step 1: Understand File Naming Convention
 
@@ -197,10 +197,10 @@ Files are named: `sgRNA_design_{TAXID}_{GENOME}_{CAS}_{APPLICATION}_{ALGORITHM}_
 
 ```bash
 # Search the download links file
-grep "9606_GRCh38_SpyoCas9_CRISPRko" biomni/know_how/resource/CRISPick_download_links.txt
+grep "9606_GRCh38_SpyoCas9_CRISPRko" bioaisaas/know_how/resource/CRISPick_download_links.txt
 
 # Or for mouse
-grep "10090_GRCm38_SpyoCas9_CRISPRko" biomni/know_how/resource/CRISPick_download_links.txt
+grep "10090_GRCm38_SpyoCas9_CRISPRko" bioaisaas/know_how/resource/CRISPick_download_links.txt
 ```
 
 #### Step 3: Download and Extract

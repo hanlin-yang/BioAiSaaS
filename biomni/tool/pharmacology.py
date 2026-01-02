@@ -2019,7 +2019,7 @@ def _process_ddinter_data_inline(data_lake_path, output_dir):
     Process DDInter CSV files into standardized pickle files.
 
     This function processes raw DDInter 2.0 CSV files and creates standardized
-    data structures for use in Biomni drug-drug interaction analysis.
+    data structures for use in BioAiSaaS drug-drug interaction analysis.
 
     Parameters
     ----------
@@ -2337,7 +2337,7 @@ def query_drug_interactions(drug_names, interaction_types=None, severity_levels=
 
     # Handle default data lake path
     if data_lake_path is None:
-        # Default path assuming standard Biomni structure
+        # Default path assuming standard BioAiSaaS structure
         data_lake_path = os.path.join(os.path.dirname(__file__), "schema_db")
 
     log += "Query Parameters:\n"
@@ -2982,7 +2982,7 @@ class OpenFDAClient:
         self.requests = requests
         self.time = time
         self.session = requests.Session()
-        self.session.headers.update({"User-Agent": "Biomni-Agent/1.0 (https://biomni.stanford.edu)"})
+        self.session.headers.update({"User-Agent": "BioAiSaaS-Agent/1.0 (https://bioaisaas.dev)"})
         self.retry_attempts = 3
         self.timeout = 30
         self.rate_limit_delay = 0.2  # 5 requests/second

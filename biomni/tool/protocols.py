@@ -12,7 +12,7 @@ import requests
 
 try:
     # Optional import to read from central config if available
-    from biomni.config import default_config  # type: ignore
+    from bioaisaas.config import default_config  # type: ignore
 except Exception:
     default_config = None  # fallback if import fails
 
@@ -57,7 +57,7 @@ def search_protocols(
     # Ensure access token is configured
     if not ACCESS_TOKEN:
         raise ValueError(
-            "Protocols.io access token is not configured. Set PROTOCOLS_IO_ACCESS_TOKEN or BIOMNI_PROTOCOLS_IO_ACCESS_TOKEN env var, or configure BiomniConfig.protocols_io_access_token."
+            "Protocols.io access token is not configured. Set PROTOCOLS_IO_ACCESS_TOKEN or BIOMNI_PROTOCOLS_IO_ACCESS_TOKEN env var, or configure BioAiSaaSConfig.protocols_io_access_token."
         )
 
     # Construct API request
@@ -148,7 +148,7 @@ def get_protocol_details(protocol_id: int, timeout: int = 30) -> dict[str, Any]:
     # Ensure access token is configured
     if not ACCESS_TOKEN:
         raise ValueError(
-            "Protocols.io access token is not configured. Set PROTOCOLS_IO_ACCESS_TOKEN or BIOMNI_PROTOCOLS_IO_ACCESS_TOKEN env var, or configure BiomniConfig.protocols_io_access_token."
+            "Protocols.io access token is not configured. Set PROTOCOLS_IO_ACCESS_TOKEN or BIOMNI_PROTOCOLS_IO_ACCESS_TOKEN env var, or configure BioAiSaaSConfig.protocols_io_access_token."
         )
 
     url = f"https://www.protocols.io/api/v3/protocols/{protocol_id}"

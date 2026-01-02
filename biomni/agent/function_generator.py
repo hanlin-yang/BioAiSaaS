@@ -1,6 +1,6 @@
 import re
 
-from biomni.llm import get_llm
+from bioaisaas.llm import get_llm
 
 
 class base_agent:

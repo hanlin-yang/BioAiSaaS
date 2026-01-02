@@ -531,7 +531,7 @@ def safe_execute_decorator(func):
 
 def api_schema_to_langchain_tool(api_schema, mode="generated_tool", module_name=None):
     if mode == "generated_tool":
-        module = importlib.import_module("biomni.tool.generated_tool." + api_schema["tool_name"] + ".api")
+        module = importlib.import_module("bioaisaas.tool.generated_tool." + api_schema["tool_name"] + ".api")
     elif mode == "custom_tool":
         module = importlib.import_module(module_name)
 
@@ -870,9 +870,9 @@ def read_module2api():
 
     module2api = {}
     for field in fields:
-        module_name = f"biomni.tool.tool_description.{field}"
+        module_name = f"bioaisaas.tool.tool_description.{field}"
         module = importlib.import_module(module_name)
-        module2api[f"biomni.tool.{field}"] = module.description
+        module2api[f"bioaisaas.tool.{field}"] = module.description
     return module2api
 
 
@@ -924,7 +924,7 @@ def check_and_download_s3_files(
     """Check for missing files in the local data lake and download them from S3 bucket.
 
     Args:
-        s3_bucket_url: Base URL of the S3 bucket (e.g., "https://biomni-release.s3.amazonaws.com")
+        s3_bucket_url: Base URL of the S3 bucket (e.g., "https://bioaisaas-release.s3.amazonaws.com")
         local_data_lake_path: Local path to the data lake directory
         expected_files: List of expected file names in the data lake
         folder: S3 folder name ("data_lake" or "benchmark")
@@ -1145,7 +1145,7 @@ def parse_tool_calls_from_code(code: str, module2api: dict, custom_functions: di
         Sorted list of unique tool names detected in the code
 
     Example:
-        >>> code = "from biomni.tool import analyze_data\nimport pandas as pd"
+        >>> code = "from bioaisaas.tool import analyze_data\nimport pandas as pd"
         >>> parse_tool_calls_from_code(code, module2api)
         ['analyze_data', 'pandas']
     """
@@ -1299,7 +1299,7 @@ def inject_custom_functions_to_repl(custom_functions: dict):
     """
     if custom_functions:
         # Access the persistent namespace used by run_python_repl
-        from biomni.tool.support_tools import _persistent_namespace
+        from bioaisaas.tool.support_tools import _persistent_namespace
 
         # Inject all custom functions into the execution namespace
         for name, func in custom_functions.items():
@@ -1308,9 +1308,9 @@ def inject_custom_functions_to_repl(custom_functions: dict):
         # Also make them available in builtins for broader access
         import builtins
 
-        if not hasattr(builtins, "_biomni_custom_functions"):
-            builtins._biomni_custom_functions = {}
-        builtins._biomni_custom_functions.update(custom_functions)
+        if not hasattr(builtins, "_bioaisaas_custom_functions"):
+            builtins._bioaisaas_custom_functions = {}
+        builtins._bioaisaas_custom_functions.update(custom_functions)
 
 
 def format_execute_tags_in_content(content: str, parse_tool_calls_with_modules_func) -> str:
@@ -1481,8 +1481,8 @@ def format_detected_tools(detected_tool_modules: list) -> str:
         Comma-separated string of formatted tool descriptions
 
     Example:
-        >>> format_detected_tools([("analyze_data", "biomni.tool"), ("pandas", "pandas")])
-        "biomni → analyze_data, pandas → pandas"
+        >>> format_detected_tools([("analyze_data", "bioaisaas.tool"), ("pandas", "pandas")])
+        "bioaisaas → analyze_data, pandas → pandas"
     """
     tool_descriptions = []
     for tool_name, module_name in detected_tool_modules:
@@ -1719,7 +1719,7 @@ def remove_emojis_from_text(text: str) -> str:
         Text content with emojis removed
 
     Note:
-        The function targets specific emojis used in the Biomni system:
+        The function targets specific emojis used in the BioAiSaaS system:
         - 🔧 for tools
         - 📊 for data
         - ⚙️ for software
@@ -1965,7 +1965,7 @@ def convert_markdown_to_pdf(markdown_path: str, pdf_path: str) -> None:
         <html>
         <head>
             <meta charset="utf-8">
-            <title>Biomni Conversation History</title>
+            <title>BioAiSaaS Conversation History</title>
             <style>{css_content}</style>
         </head>
         <body>

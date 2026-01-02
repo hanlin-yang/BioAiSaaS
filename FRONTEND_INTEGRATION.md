@@ -17,7 +17,7 @@ BioAiSaaS/
 │   ├── tailwind.config.ts # Tailwind CSS configuration
 │   └── index.html        # Entry HTML file
 │
-├── biomni/               # Python backend code
+├── bioaisaas/               # Python backend code
 ├── docs/                 # Documentation
 ├── tutorials/            # Tutorials
 ├── .github/              # GitHub Actions workflows
@@ -89,10 +89,10 @@ npm run build
 cd BioAiSaaS
 
 # Activate Python environment
-source biomni_env/bin/activate  # or biomni_env\Scripts\activate on Windows
+source bioaisaas_env/bin/activate  # or bioaisaas_env\Scripts\activate on Windows
 
 # Run backend server
-python -m biomni.server  # (adjust based on actual entry point)
+python -m bioaisaas.server  # (adjust based on actual entry point)
 ```
 
 ## Integration Options
@@ -127,7 +127,7 @@ After integration:
 
 **Backend:**
 - Python (Language)
-- biomni (Core library)
+- bioaisaas (Core library)
 
 ## Support
 

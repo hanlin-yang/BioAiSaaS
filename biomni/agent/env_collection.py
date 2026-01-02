@@ -6,7 +6,7 @@ from typing import Any
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-from biomni.agent.base_agent import base_agent
+from bioaisaas.agent.base_agent import base_agent
 
 
 class PaperTaskExtractor(base_agent):

@@ -2,7 +2,7 @@
 Glycoengineering tools: quick, dependency-light utilities for glycosylation analysis
 and curated links to external, specialized software referenced in issue #198.
 
-Functions return research-log style strings to match Biomni tool patterns.
+Functions return research-log style strings to match BioAiSaaS tool patterns.
 """
 
 
@@ -142,5 +142,5 @@ def list_glycoengineering_resources() -> str:
     lines.append("")
     lines.append("Notes:")
     lines.append("- Many tools are heavy and best run via their own environments or containers.")
-    lines.append("- For tight Biomni integration, consider adding MCP wrappers or CLI installers.")
+    lines.append("- For tight BioAiSaaS integration, consider adding MCP wrappers or CLI installers.")
     return "\n".join(lines)

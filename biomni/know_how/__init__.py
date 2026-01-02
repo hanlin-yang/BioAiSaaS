@@ -1,4 +1,4 @@
-"""Know-How library for Biomni agent.
+"""Know-How library for BioAiSaaS agent.
 
 This module provides functionality to load and manage know-how documents
 that contain best practices, protocols, and troubleshooting guides.

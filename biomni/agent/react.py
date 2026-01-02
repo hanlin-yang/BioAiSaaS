@@ -14,12 +14,12 @@ from langchain_core.runnables import RunnableConfig
 from langgraph.graph import END, StateGraph
 from langgraph.graph.message import add_messages
 
-from biomni.config import default_config
-from biomni.env_desc import data_lake_dict, library_content_dict
-from biomni.llm import get_llm
-from biomni.model.retriever import ToolRetriever
-from biomni.tool.tool_registry import ToolRegistry
-from biomni.utils import (
+from bioaisaas.config import default_config
+from bioaisaas.env_desc import data_lake_dict, library_content_dict
+from bioaisaas.llm import get_llm
+from bioaisaas.model.retriever import ToolRetriever
+from bioaisaas.tool.tool_registry import ToolRegistry
+from bioaisaas.utils import (
     api_schema_to_langchain_tool,
     function_to_api_schema,
     pretty_print,

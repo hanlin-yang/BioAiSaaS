@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING, Literal, Optional
 from langchain_core.language_models.chat_models import BaseChatModel
 
 if TYPE_CHECKING:
-    from biomni.config import BiomniConfig
+    from bioaisaas.config import BioAiSaaSConfig
 
 SourceType = Literal["OpenAI", "AzureOpenAI", "Anthropic", "Ollama", "Gemini", "Bedrock", "Groq", "Custom"]
 ALLOWED_SOURCES: set[str] = set(SourceType.__args__)
@@ -17,7 +17,7 @@ def get_llm(
     source: SourceType | None = None,
     base_url: str | None = None,
     api_key: str | None = None,
-    config: Optional["BiomniConfig"] = None,
+    config: Optional["BioAiSaaSConfig"] = None,
 ) -> BaseChatModel:
     """
     Get a language model instance based on the specified model name and source.
@@ -30,7 +30,7 @@ def get_llm(
                       If None, will attempt to auto-detect from model name
         base_url (str): The base URL for custom model serving (e.g., "http://localhost:8000/v1"), default is None
         api_key (str): The API key for the custom llm
-        config (BiomniConfig): Optional configuration object. If provided, unspecified parameters will use config values
+        config (BioAiSaaSConfig): Optional configuration object. If provided, unspecified parameters will use config values
     """
     # Use config values for any unspecified parameters
     if config is not None:

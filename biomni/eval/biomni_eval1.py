@@ -1,8 +1,8 @@
 """
-BiomniEval1: Evaluation loader for Biomni tasks
+BioAiSaaSEval1: Evaluation loader for BioAiSaaS tasks
 
 This class provides a unified interface to evaluate user answers against ground truth
-for all tasks in the BiomniEval1 benchmark.
+for all tasks in the BioAiSaaSEval1 benchmark.
 """
 
 import json
@@ -11,24 +11,24 @@ from typing import Any
 import pandas as pd
 
 
-class BiomniEval1:
+class BioAiSaaSEval1:
     """
-    Evaluation loader for BiomniEval1 benchmark
+    Evaluation loader for BioAiSaaSEval1 benchmark
 
     Usage:
-        evaluator = BiomniEval1('biomni_eval1_dataset.parquet')
+        evaluator = BioAiSaaSEval1('bioaisaas_eval1_dataset.parquet')
         score = evaluator.evaluate('gwas_causal_gene_opentargets', 0, 'BRCA1')
     """
 
     def __init__(self):
         """
-        Initialize the BiomniEval1 evaluator
+        Initialize the BioAiSaaSEval1 evaluator
 
         Args:
             dataset_path: Path to the merged dataset parquet file
         """
 
-        self.df = pd.read_parquet("hf://datasets/biomni/Eval1/biomni_eval1_dataset.parquet")
+        self.df = pd.read_parquet("hf://datasets/bioaisaas/Eval1/bioaisaas_eval1_dataset.parquet")
 
         # Create index mapping for fast lookup using task_instance_id
         self.instance_map = {}
@@ -36,7 +36,7 @@ class BiomniEval1:
             key = (row["task_name"], row["task_instance_id"])
             self.instance_map[key] = idx
 
-        print(f"Loaded BiomniEval1 dataset: {len(self.df)} instances across {self.df['task_name'].nunique()} tasks")
+        print(f"Loaded BioAiSaaSEval1 dataset: {len(self.df)} instances across {self.df['task_name'].nunique()} tasks")
 
     def evaluate(self, task_name: str, task_instance_id: int, user_answer: str) -> float:
         """
@@ -258,15 +258,15 @@ class BiomniEval1:
         return task_df.copy()
 
     def __repr__(self):
-        return f"BiomniEval1(instances={len(self.df)}, tasks={self.df['task_name'].nunique()})"
+        return f"BioAiSaaSEval1(instances={len(self.df)}, tasks={self.df['task_name'].nunique()})"
 
     def __len__(self):
         return len(self.df)
 
 
 def main():
-    """Demo usage of BiomniEval1"""
-    evaluator = BiomniEval1()
+    """Demo usage of BioAiSaaSEval1"""
+    evaluator = BioAiSaaSEval1()
 
     print("\nAvailable tasks:")
     for task in evaluator.list_tasks():

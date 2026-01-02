@@ -1,11 +1,11 @@
-# Biomni Environment Setup
+# BioAiSaaS Environment Setup
 
 This directory contains scripts and configuration files to set up a comprehensive bioinformatics environment with various tools and packages.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/snap-stanford/Biomni.git
-   cd Biomni/biomni_env
+   git clone https://github.com/snap-stanford/BioAiSaaS.git
+   cd BioAiSaaS/bioaisaas_env
    ```
 
 2. Setting up the environment:
@@ -45,19 +45,19 @@ conda env create -f bio_env_py310.yml
 
 This environment is optimized for copy number variation analysis and includes the necessary packages for purity, ploidy, and focal event detection.
 
-3. Lastly, to activate the biomni environment:
+3. Lastly, to activate the bioaisaas environment:
 ```bash
-conda activate biomni_e1
+conda activate bioaisaas_e1
 ```
 
 For the Python 3.10 environment specifically:
 ```bash
-conda activate biomni_py310
+conda activate bioaisaas_py310
 ```
 
 ### 📦 Langchain Package Support
 
-The Biomni environment comes with a minimal set of langchain packages by default:
+The BioAiSaaS environment comes with a minimal set of langchain packages by default:
 - `langchain-openai` - for OpenAI model support
 - `langchain-anthropic` - for Anthropic model support
 - `langchain-ollama` - for Ollama model support

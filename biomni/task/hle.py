@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from biomni.task.base_task import base_task
+from bioaisaas.task.base_task import base_task
 
 np.random.seed(42)
 

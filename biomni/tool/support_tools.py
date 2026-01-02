@@ -84,7 +84,7 @@ def _apply_matplotlib_patches():
         import matplotlib.pyplot as plt
 
         # Only patch if matplotlib is available and not already patched
-        if hasattr(plt, "_biomni_patched"):
+        if hasattr(plt, "_bioaisaas_patched"):
             return
 
         # Store original functions
@@ -117,7 +117,7 @@ def _apply_matplotlib_patches():
         plt.savefig = savefig_with_capture
 
         # Mark as patched to avoid double-patching
-        plt._biomni_patched = True
+        plt._bioaisaas_patched = True
 
     except ImportError:
         # matplotlib not available

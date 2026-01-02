@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Simple test script for testing a single Biomni MCP tool.
+Simple test script for testing a single BioAiSaaS MCP tool.
 """
 
 import asyncio
@@ -38,7 +38,7 @@ TEST_ARGS = {"prompt": "Find information about human insulin protein"}
 
 
 async def test_single_tool():
-    """Test a single tool in the Biomni MCP server."""
+    """Test a single tool in the BioAiSaaS MCP server."""
 
     # Set up the server parameters
     # Use relative path from the current script's directory

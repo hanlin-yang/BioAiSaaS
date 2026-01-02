@@ -1,18 +1,18 @@
 <p align="center">
-  <img src="./figs/biomni_logo.png" alt="Biomni Logo" width="600px" />
+  <img src="./figs/bioaisaas_logo.png" alt="BioAiSaaS Logo" width="600px" />
 </p>
 
 <p align="center">
-<a href="https://join.slack.com/t/biomnigroup/shared_invite/zt-3avks4913-dotMBt8D_apQnJ3mG~ak6Q">
+<a href="https://join.slack.com/t/bioaisaasgroup/shared_invite/zt-3avks4913-dotMBt8D_apQnJ3mG~ak6Q">
 <img src="https://img.shields.io/badge/Join-Slack-4A154B?style=for-the-badge&logo=slack" alt="Join Slack" />
 </a>
-<a href="https://biomni.stanford.edu">
+<a href="https://bioaisaas.dev">
 <img src="https://img.shields.io/badge/Try-Web%20UI-blue?style=for-the-badge" alt="Web UI" />
 </a>
-<a href="https://x.com/ProjectBiomni">
+<a href="https://x.com/ProjectBioAiSaaS">
 <img src="https://img.shields.io/badge/Follow-on%20X-black?style=for-the-badge&logo=x" alt="Follow on X" />
 </a>
-<a href="https://www.linkedin.com/company/project-biomni">
+<a href="https://www.linkedin.com/company/project-bioaisaas">
 <img src="https://img.shields.io/badge/Follow-LinkedIn-0077B5?style=for-the-badge&logo=linkedin" alt="Follow on LinkedIn" />
 </a>
 <a href="https://www.biorxiv.org/content/10.1101/2025.05.30.656746v1">
@@ -22,12 +22,12 @@
 
 
 
-# Biomni: A General-Purpose Biomedical AI Agent
+# BioAiSaaS: A General-Purpose Biomedical AI Agent
 
 ## Overview
 
 
-Biomni is a general-purpose biomedical AI agent designed to autonomously execute a wide range of research tasks across diverse biomedical subfields. By integrating cutting-edge large language model (LLM) reasoning with retrieval-augmented planning and code-based execution, Biomni helps scientists dramatically enhance research productivity and generate testable hypotheses.
+BioAiSaaS is a general-purpose biomedical AI agent designed to autonomously execute a wide range of research tasks across diverse biomedical subfields. By integrating cutting-edge large language model (LLM) reasoning with retrieval-augmented planning and code-based execution, BioAiSaaS helps scientists dramatically enhance research productivity and generate testable hypotheses.
 
 
 ## Quick Start
@@ -35,24 +35,24 @@ Biomni is a general-purpose biomedical AI agent designed to autonomously execute
 ### Installation
 
 Our software environment is massive and we provide a single setup.sh script to setup.
-Follow this [file](biomni_env/README.md) to setup the env first.
+Follow this [file](bioaisaas_env/README.md) to setup the env first.
 
 Then activate the environment E1:
 
 ```bash
-conda activate biomni_e1
+conda activate bioaisaas_e1
 ```
 
-then install the biomni official pip package:
+then install the bioaisaas official pip package:
 
 ```bash
-pip install biomni --upgrade
+pip install bioaisaas --upgrade
 ```
 
 For the latest update, install from the github source version, or do:
 
 ```bash
-pip install git+https://github.com/snap-stanford/Biomni.git@main
+pip install git+https://github.com/snap-stanford/BioAiSaaS.git@main
 ```
 
 Lastly, configure your API keys using one of the following methods:
@@ -102,7 +102,7 @@ AWS_REGION=us-east-1
 # CUSTOM_MODEL_BASE_URL=http://localhost:8000/v1
 # CUSTOM_MODEL_API_KEY=your_custom_api_key_here
 
-# Optional: Biomni data path (defaults to ./data)
+# Optional: BioAiSaaS data path (defaults to ./data)
 # BIOMNI_DATA_PATH=/path/to/your/data
 
 # Optional: Timeout settings (defaults to 600 seconds)
@@ -130,14 +130,14 @@ export LLM_SOURCE="Groq" # Optional: set this to use models served by Groq
 
 #### ⚠️ Known Package Conflicts
 
-Some Python packages are not installed by default in the Biomni environment due to dependency conflicts. If you need these features, you must install the packages manually and may need to uncomment relevant code in the codebase. See the up-to-date list and details in [docs/known_conflicts.md](./docs/known_conflicts.md).
+Some Python packages are not installed by default in the BioAiSaaS environment due to dependency conflicts. If you need these features, you must install the packages manually and may need to uncomment relevant code in the codebase. See the up-to-date list and details in [docs/known_conflicts.md](./docs/known_conflicts.md).
 
 ### Basic Usage
 
-Once inside the environment, you can start using Biomni:
+Once inside the environment, you can start using BioAiSaaS:
 
 ```python
-from biomni.agent import A1
+from bioaisaas.agent import A1
 
 # Initialize the agent with data path, Data lake will be automatically downloaded on first run (~11GB)
 agent = A1(path='./data', llm='claude-sonnet-4-20250514')
@@ -150,7 +150,7 @@ agent.go("Predict ADMET properties for this compound: CC(C)CC1=CC=C(C=C1)C(C)C(=
 
 #### Controlling Datalake Loading
 
-By default, Biomni automatically downloads the datalake files (~11GB) when you create an agent. You can control this behavior:
+By default, BioAiSaaS automatically downloads the datalake files (~11GB) when you create an agent. You can control this behavior:
 
 ```python
 # Skip automatic datalake download (faster initialization)
@@ -165,10 +165,10 @@ If you plan on using Azure for your model, always prefix the model name with azu
 
 ### Gradio Interface
 
-Launch an interactive web UI for Biomni:
+Launch an interactive web UI for BioAiSaaS:
 
 ```python
-from biomni.agent import A1
+from bioaisaas.agent import A1
 
 agent = A1(path='./data', llm='claude-sonnet-4-20250514')
 agent.launch_gradio_demo()
@@ -182,17 +182,17 @@ pip install gradio
 **Options:**
 - `share=True` - Create a public shareable link
 - `server_name="127.0.0.1"` - Localhost only (default: "0.0.0.0")
-- `require_verification=True` - Require access code (default code: "Biomni2025")
+- `require_verification=True` - Require access code (default code: "BioAiSaaS2025")
 
 The interface will be available at `http://localhost:7860`
 
 ### Configuration Management
 
-Biomni includes a centralized configuration system that provides flexible ways to manage settings. You can configure Biomni through environment variables, runtime modifications, or direct parameters.
+BioAiSaaS includes a centralized configuration system that provides flexible ways to manage settings. You can configure BioAiSaaS through environment variables, runtime modifications, or direct parameters.
 
 ```python
-from biomni.config import default_config
-from biomni.agent import A1
+from bioaisaas.config import default_config
+from bioaisaas.agent import A1
 
 # RECOMMENDED: Modify global defaults for consistency
 default_config.llm = "gpt-4"
@@ -211,7 +211,7 @@ For detailed configuration options, see the **[Configuration Guide](docs/configu
 Generate PDF reports of execution traces:
 
 ```python
-from biomni.agent import A1
+from bioaisaas.agent import A1
 
 # Initialize agent
 agent = A1(path='./data', llm='claude-sonnet-4-20250514')
@@ -256,10 +256,10 @@ pip install pandoc
 
 ## MCP (Model Context Protocol) Support
 
-Biomni supports MCP servers for external tool integration:
+BioAiSaaS supports MCP servers for external tool integration:
 
 ```python
-from biomni.agent import A1
+from bioaisaas.agent import A1
 
 agent = A1()
 agent.add_mcp(config_path="./mcp_config.yaml")
@@ -267,37 +267,37 @@ agent.go("Find FDA active ingredient information for ibuprofen")
 ```
 
 **Built-in MCP Servers:**
-For usage and implementation details, see the [MCP Integration Documentation](docs/mcp_integration.md) and examples in [`tutorials/examples/add_mcp_server/`](tutorials/examples/add_mcp_server/) and [`tutorials/examples/expose_biomni_server/`](tutorials/examples/expose_biomni_server/).
+For usage and implementation details, see the [MCP Integration Documentation](docs/mcp_integration.md) and examples in [`tutorials/examples/add_mcp_server/`](tutorials/examples/add_mcp_server/) and [`tutorials/examples/expose_bioaisaas_server/`](tutorials/examples/expose_bioaisaas_server/).
 
 
-## Biomni-R0
+## BioAiSaaS-R0
 
-**Biomni-R0** is our first reasoning model for biology, built on Qwen-32B with reinforcement learning from agent interaction data. It's designed to excel at tool use, multi-step reasoning, and complex biological problem-solving through iterative self-correction.
+**BioAiSaaS-R0** is our first reasoning model for biology, built on Qwen-32B with reinforcement learning from agent interaction data. It's designed to excel at tool use, multi-step reasoning, and complex biological problem-solving through iterative self-correction.
 
-- 🤗 Model: [biomni/Biomni-R0-32B-Preview](https://huggingface.co/biomni/Biomni-R0-32B-Preview)
-- 📝 Technical Report: [biomni.stanford.edu/blog/biomni-r0-technical-report](https://biomni.stanford.edu/blog/biomni-r0-technical-report)
+- 🤗 Model: [bioaisaas/BioAiSaaS-R0-32B-Preview](https://huggingface.co/bioaisaas/BioAiSaaS-R0-32B-Preview)
+- 📝 Technical Report: [bioaisaas.stanford.edu/blog/bioaisaas-r0-technical-report](https://bioaisaas.dev/blog/bioaisaas-r0-technical-report)
 
-To use Biomni-R0 for agent reasoning while keeping database queries on your usual provider (recommended), run a local SGLang server and pass the model to `A1()` directly.
+To use BioAiSaaS-R0 for agent reasoning while keeping database queries on your usual provider (recommended), run a local SGLang server and pass the model to `A1()` directly.
 
-1) Launch SGLang with Biomni-R0:
+1) Launch SGLang with BioAiSaaS-R0:
 
 ```bash
-python -m sglang.launch_server --model-path RyanLi0802/Biomni-R0-Preview --port 30000 --host 0.0.0.0 --mem-fraction-static 0.8 --tp 2 --trust-remote-code --json-model-override-args '{"rope_scaling":{"rope_type":"yarn","factor":1.0,"original_max_position_embeddings":32768}, "max_position_embeddings": 131072}'
+python -m sglang.launch_server --model-path RyanLi0802/BioAiSaaS-R0-Preview --port 30000 --host 0.0.0.0 --mem-fraction-static 0.8 --tp 2 --trust-remote-code --json-model-override-args '{"rope_scaling":{"rope_type":"yarn","factor":1.0,"original_max_position_embeddings":32768}, "max_position_embeddings": 131072}'
 ```
 
 2) Point the agent to your SGLang endpoint for reasoning:
 
 ```python
-from biomni.config import default_config
-from biomni.agent import A1
+from bioaisaas.config import default_config
+from bioaisaas.agent import A1
 
 # Database queries (indexes, retrieval, etc.) use default_config
 default_config.llm = "claude-3-5-sonnet-20241022"
 default_config.source = "Anthropic"
 
-# Agent reasoning uses Biomni-R0 served via SGLang (OpenAI-compatible API)
+# Agent reasoning uses BioAiSaaS-R0 served via SGLang (OpenAI-compatible API)
 agent = A1(
-    llm="biomni/Biomni-R0-32B-Preview",
+    llm="bioaisaas/BioAiSaaS-R0-32B-Preview",
     source="Custom",
     base_url="http://localhost:30000/v1",
     api_key="EMPTY",
@@ -306,9 +306,9 @@ agent = A1(
 agent.go("Plan a CRISPR screen to identify genes regulating T cell exhaustion")
 ```
 
-## Biomni-Eval1
+## BioAiSaaS-Eval1
 
-**Biomni-Eval1** is a comprehensive evaluation benchmark for assessing biological reasoning capabilities across diverse tasks. It contains **433 instances** spanning **10 biological reasoning tasks**, from gene identification to disease diagnosis.
+**BioAiSaaS-Eval1** is a comprehensive evaluation benchmark for assessing biological reasoning capabilities across diverse tasks. It contains **433 instances** spanning **10 biological reasoning tasks**, from gene identification to disease diagnosis.
 
 **Tasks Included:**
 - GWAS causal gene identification (3 variants)
@@ -320,19 +320,19 @@ agent.go("Plan a CRISPR screen to identify genes regulating T cell exhaustion")
 - CRISPR delivery method selection
 
 **Resources:**
-- 🤗 Dataset: [biomni/Eval1](https://huggingface.co/datasets/biomni/Eval1)
+- 🤗 Dataset: [bioaisaas/Eval1](https://huggingface.co/datasets/bioaisaas/Eval1)
 - 💻 Quick Start:
 ```python
-from biomni.eval import BiomniEval1
+from bioaisaas.eval import BioAiSaaSEval1
 
-evaluator = BiomniEval1()
+evaluator = BioAiSaaSEval1()
 score = evaluator.evaluate('gwas_causal_gene_opentargets', 0, 'BRCA1')
 ```
 
 
 ## 📚 Know-How Library
 
-Biomni includes a **Know-How Library** — a curated collection of best practices, protocols, and troubleshooting guides for biomedical techniques. These documents are automatically retrieved by the A1 agent when relevant to provide domain expertise and practical knowledge.
+BioAiSaaS includes a **Know-How Library** — a curated collection of best practices, protocols, and troubleshooting guides for biomedical techniques. These documents are automatically retrieved by the A1 agent when relevant to provide domain expertise and practical knowledge.
 
 **Features:**
 - Automatic retrieval based on query relevance
@@ -353,9 +353,9 @@ Know-how documents should be practical, succinct, and include proper attribution
 
 **To contribute:** Create a markdown file following our template and submit a pull request.
 
-## 🤝 Contributing to Biomni
+## 🤝 Contributing to BioAiSaaS
 
-Biomni is an open-science initiative that thrives on community contributions. We welcome:
+BioAiSaaS is an open-science initiative that thrives on community contributions. We welcome:
 
 - **🔧 New Tools**: Specialized analysis functions and algorithms
 - **📊 Datasets**: Curated biomedical data and knowledge bases
@@ -365,15 +365,15 @@ Biomni is an open-science initiative that thrives on community contributions. We
 - **📚 Misc**: Tutorials, examples, and use cases
 - **🔧 Update existing tools**: many current tools are not optimized - fix and replacements are welcome!
 
-Check out this **[Contributing Guide](CONTRIBUTION.md)** on how to contribute to the Biomni ecosystem.
+Check out this **[Contributing Guide](CONTRIBUTION.md)** on how to contribute to the BioAiSaaS ecosystem.
 
-If you have particular tool/database/software in mind that you want to add, you can also submit to [this form](https://forms.gle/nu2n1unzAYodTLVj6) and the biomni team will implement them.
+If you have particular tool/database/software in mind that you want to add, you can also submit to [this form](https://forms.gle/nu2n1unzAYodTLVj6) and the bioaisaas team will implement them.
 
-## 🔬 Call for Contributors: Help Build Biomni-E2
+## 🔬 Call for Contributors: Help Build BioAiSaaS-E2
 
-Biomni-E1 only scratches the surface of what’s possible in the biomedical action space.
+BioAiSaaS-E1 only scratches the surface of what’s possible in the biomedical action space.
 
-Now, we’re building **Biomni-E2** — a next-generation environment developed **with and for the community**.
+Now, we’re building **BioAiSaaS-E2** — a next-generation environment developed **with and for the community**.
 
 We believe that by collaboratively defining and curating a shared library of standard biomedical actions, we can accelerate science for everyone.
 
@@ -388,27 +388,27 @@ Let’s build it together.
 
 ## Tutorials and Examples
 
-**[Biomni 101](./tutorials/biomni_101.ipynb)** - Basic concepts and first steps
+**[BioAiSaaS 101](./tutorials/bioaisaas_101.ipynb)** - Basic concepts and first steps
 
 More to come!
 
 ## 🌐 Web Interface
 
-Experience Biomni through our no-code web interface at **[biomni.stanford.edu](https://biomni.stanford.edu)**.
+Experience BioAiSaaS through our no-code web interface at **[bioaisaas.stanford.edu](https://bioaisaas.dev)**.
 
 [![Watch the video](https://img.youtube.com/vi/E0BRvl23hLs/maxresdefault.jpg)](https://youtu.be/E0BRvl23hLs)
 
 
 ## Important Note
-- Security warning: Currently, Biomni executes LLM-generated code with full system privileges. If you want to use it in production, please use in isolated/sandboxed environments. The agent can access files, network, and system commands. Be careful with sensitive data or credentials.
+- Security warning: Currently, BioAiSaaS executes LLM-generated code with full system privileges. If you want to use it in production, please use in isolated/sandboxed environments. The agent can access files, network, and system commands. Be careful with sensitive data or credentials.
 - This release was frozen as of April 15 2025, so it differs from the current web platform.
-- Biomni itself is Apache 2.0-licensed, but certain integrated tools, databases, or software may carry more restrictive commercial licenses. Review each component carefully before any commercial use.
+- BioAiSaaS itself is Apache 2.0-licensed, but certain integrated tools, databases, or software may carry more restrictive commercial licenses. Review each component carefully before any commercial use.
 
 ## Cite Us
 
 ```
-@article{huang2025biomni,
-  title={Biomni: A General-Purpose Biomedical AI Agent},
+@article{huang2025bioaisaas,
+  title={BioAiSaaS: A General-Purpose Biomedical AI Agent},
   author={Huang, Kexin and Zhang, Serena and Wang, Hanchen and Qu, Yuanhao and Lu, Yingzhou and Roohani, Yusuf and Li, Ryan and Qiu, Lin and Zhang, Junze and Di, Yin and others},
   journal={bioRxiv},
   pages={2025--05},

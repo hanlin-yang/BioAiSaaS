@@ -1,6 +1,6 @@
 from langchain_core.prompts import ChatPromptTemplate
 
-from biomni.llm import get_llm
+from bioaisaas.llm import get_llm
 
 
 class qa_llm:

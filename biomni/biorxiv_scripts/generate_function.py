@@ -5,7 +5,7 @@ import argparse
 import json
 import os
 
-from biomni.agent.function_generator import FunctionGenerator
+from bioaisaas.agent.function_generator import FunctionGenerator
 from tqdm import tqdm
 
 

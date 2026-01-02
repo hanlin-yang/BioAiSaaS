@@ -10,9 +10,9 @@ import sys
 
 sys.path.insert(0, os.path.abspath("../../"))
 
-project = "biomni"
-copyright = "2025, Biomni"
-author = "Biomni"
+project = "bioaisaas"
+copyright = "2025, BioAiSaaS"
+author = "BioAiSaaS"
 release = "0.0.8"
 
 # -- General configuration ---------------------------------------------------
@@ -29,8 +29,8 @@ exclude_patterns = []
 napoleon_use_param = True
 
 autodoc_mock_imports = [
-    "biomni.agent.base_agent",
-    "biomni.",
+    "bioaisaas.agent.base_agent",
+    "bioaisaas.",
     "PyPDF2",
     "bioagentos",
     "Bio",

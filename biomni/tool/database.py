@@ -9,8 +9,8 @@ from Bio.Blast import NCBIWWW, NCBIXML
 from Bio.Seq import Seq
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from biomni.llm import get_llm
-from biomni.utils import parse_hpo_obo
+from bioaisaas.llm import get_llm
+from bioaisaas.utils import parse_hpo_obo
 
 
 # Function to map HPO terms to names
@@ -51,7 +51,7 @@ def _query_llm_for_api(prompt, schema, system_template):
     """
     # Use global config for model and api_key
     try:
-        from biomni.config import default_config
+        from bioaisaas.config import default_config
 
         model = default_config.llm
         api_key = default_config.api_key
@@ -69,7 +69,7 @@ def _query_llm_for_api(prompt, schema, system_template):
 
         # Get LLM instance using the unified interface with config
         try:
-            from biomni.config import default_config
+            from bioaisaas.config import default_config
 
             llm = get_llm(model=model, temperature=0.0, api_key=api_key, config=default_config)
         except ImportError:

@@ -1,5 +1,5 @@
 """
-Biomni Configuration Management
+BioAiSaaS Configuration Management
 
 Simple configuration class for centralizing common settings.
 Maintains full backward compatibility with existing code.
@@ -10,8 +10,8 @@ from dataclasses import dataclass
 
 
 @dataclass
-class BiomniConfig:
-    """Central configuration for Biomni agent.
+class BioAiSaaSConfig:
+    """Central configuration for BioAiSaaS agent.
 
     All settings are optional and have sensible defaults.
     API keys are still read from environment variables to maintain
@@ -19,10 +19,10 @@ class BiomniConfig:
 
     Usage:
         # Create config with defaults
-        config = BiomniConfig()
+        config = BioAiSaaSConfig()
 
         # Override specific settings
-        config = BiomniConfig(llm="gpt-4", timeout_seconds=1200)
+        config = BioAiSaaSConfig(llm="gpt-4", timeout_seconds=1200)
 
         # Modify after creation
         config.path = "./custom_data"
@@ -96,4 +96,4 @@ class BiomniConfig:
 
 
 # Global default config instance (optional, for convenience)
-default_config = BiomniConfig()
+default_config = BioAiSaaSConfig()

@@ -1030,16 +1030,16 @@ def analyze_copy_number_purity_ploidy_and_focal_events(
     cnvkit_path = shutil.which("cnvkit.py") or shutil.which("cnvkit")
     use_conda_env = False
 
-    # Check if CNVkit is available in biomni_e1 environment
+    # Check if CNVkit is available in bioaisaas_e1 environment
     if not cnvkit_path:
         try:
             result = subprocess.run(
-                ["conda", "run", "-n", "biomni_e1", "which", "cnvkit.py"], capture_output=True, text=True, check=True
+                ["conda", "run", "-n", "bioaisaas_e1", "which", "cnvkit.py"], capture_output=True, text=True, check=True
             )
             if result.returncode == 0 and result.stdout.strip():
                 cnvkit_path = "cnvkit.py"  # Will use via conda run
                 use_conda_env = True
-                log.append("- CNVkit found in biomni_e1 environment")
+                log.append("- CNVkit found in bioaisaas_e1 environment")
         except (subprocess.CalledProcessError, FileNotFoundError):
             pass
 
@@ -1060,7 +1060,7 @@ def analyze_copy_number_purity_ploidy_and_focal_events(
             pass
 
     if not cnvkit_path:
-        log.append("- CNVkit not detected in current PATH, biomni_e1, or bio_env_py310 environment")
+        log.append("- CNVkit not detected in current PATH, bioaisaas_e1, or bio_env_py310 environment")
         log.append("- Install manually (e.g., pip install cnvkit==0.9.11) or run setup.sh")
         log.append("- Workflow will exit without CNVkit")
         return "\n".join(log)
@@ -1069,7 +1069,7 @@ def analyze_copy_number_purity_ploidy_and_focal_events(
     log.append(f"- CNVkit detected at: {cnvkit_path}")
 
     # Determine environment prefix for CNVkit commands
-    env_prefix = ["conda", "run", "-n", "biomni_e1"] if use_conda_env else []
+    env_prefix = ["conda", "run", "-n", "bioaisaas_e1"] if use_conda_env else []
 
     # CNVkit batch command
     batch_cmd = env_prefix + [cnvkit_path, "batch", tumor_bam, "-d", output_dir, "-f", reference_genome]

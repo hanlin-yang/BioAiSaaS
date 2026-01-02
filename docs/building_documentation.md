@@ -5,7 +5,7 @@ To build the project's documentation locally, use the `Makefile` located in the 
 
 ## Prerequisites
 
-First, ensure you have activated the `biomni_e1` conda environment. Then, install the required dependencies:
+First, ensure you have activated the `bioaisaas_e1` conda environment. Then, install the required dependencies:
 
 ```bash
 pip install sphinx sphinx-rtd-theme

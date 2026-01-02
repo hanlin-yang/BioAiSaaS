@@ -1,4 +1,4 @@
-name: biomni_e1
+name: bioaisaas_e1
 channels:
   - conda-forge
   - bioconda

@@ -1,3 +1,3 @@
-from .biomni_eval1 import BiomniEval1
+from .bioaisaas_eval1 import BioAiSaaSEval1
 
-__all__ = ["BiomniEval1"]
+__all__ = ["BioAiSaaSEval1"]

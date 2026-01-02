@@ -243,7 +243,7 @@ def advanced_web_search_claude(
     import anthropic
 
     try:
-        from biomni.config import default_config
+        from bioaisaas.config import default_config
 
         model = default_config.llm
         api_key = default_config.api_key
